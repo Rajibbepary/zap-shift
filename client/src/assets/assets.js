@@ -31,6 +31,10 @@ import closemenu from './close_icon.svg'
 import sun_icon from './sun_icon.svg'
 import moon_icon from './moon_icon.svg'
 import menu_dark from './menu_icon_dark.svg'
+import twitter_icon from './twitter_icon.svg'
+import linkedin_icon from './linkedin_icon.svg'
+import facebook_icon from './facebook_icon.svg'
+import instagram_icon from './instagram_icon.svg'
 const assets = {
     banner1,
     banner2,
@@ -64,7 +68,11 @@ const assets = {
     closemenu,
     sun_icon,
     moon_icon,
-    menu_dark
+    menu_dark,
+    instagram_icon,
+    linkedin_icon,
+    facebook_icon,
+    twitter_icon
 }
 
 export default assets
