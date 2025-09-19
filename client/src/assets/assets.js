@@ -28,6 +28,9 @@ import service from './service.png'
 import tiny from './tiny-deliveryman.png'
 import menuIcon from './menu_icon.svg'
 import closemenu from './close_icon.svg'
+import sun_icon from './sun_icon.svg'
+import moon_icon from './moon_icon.svg'
+import menu_dark from './menu_icon_dark.svg'
 const assets = {
     banner1,
     banner2,
@@ -58,7 +61,10 @@ const assets = {
     service,
     tiny,
     menuIcon,
-    closemenu
+    closemenu,
+    sun_icon,
+    moon_icon,
+    menu_dark
 }
 
 export default assets

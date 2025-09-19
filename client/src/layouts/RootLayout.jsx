@@ -1,11 +1,14 @@
 import {Outlet} from 'react-router'
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
+import { useState } from 'react';
 
 const RootLayout = () => {
+    
+  const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
     return (
-        <div className='bg-[#EAECED]'>
-            <Navbar/>
+        <div className='relative'>
+            <Navbar theme={theme} setTheme={setTheme}/>
          <Outlet></Outlet>
          <Footer/>
         </div>
