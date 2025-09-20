@@ -35,6 +35,7 @@ import twitter_icon from './twitter_icon.svg'
 import linkedin_icon from './linkedin_icon.svg'
 import facebook_icon from './facebook_icon.svg'
 import instagram_icon from './instagram_icon.svg'
+import arrow_icon from './arrow_icon.svg'
 const assets = {
     banner1,
     banner2,
@@ -72,7 +73,8 @@ const assets = {
     instagram_icon,
     linkedin_icon,
     facebook_icon,
-    twitter_icon
+    twitter_icon,
+    arrow_icon
 }
 
 export default assets
