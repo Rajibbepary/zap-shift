@@ -14,7 +14,7 @@ const Navbar = ({theme, setTheme}) => {
         initial={{opacity: 0, y: -50}}
         animate={{opacity: 1, y: 0}}
         transition={{duration: 0.6, ease: 'easeInOut'}}
-        className='flex justify-between items-center px-4 py-4 sm:px-12  sticky top-0 z-20 backdrop-blur-xl font-medium bg-white/50 dark:bg-gray-900/70'> 
+        className='flex justify-between items-center px-4 py-4 sm:px-12  sticky top-0 z-20 backdrop-blur-xl shadow-xl font-medium bg-white/50 dark:bg-gray-900/70'> 
             <div className="relative max-sm:hidden flex">
                 <img src={assets.logo} className="w-5" alt="" />
                 <h3 className="font-extrabold absolute ml-3 top-2 text-gray-700 dark:text-white">Profast</h3>
@@ -33,7 +33,7 @@ const Navbar = ({theme, setTheme}) => {
             <ThemeToggleBtn theme={theme} setTheme={setTheme}/>
             <img src={theme === 'dark' ? assets.menu_dark : assets.menuIcon} onClick={()=> setSidebarOpen(true)} className="w-8 sm:hidden" alt="" />
             <a href="#contact-us" className="text-sm flex items-center gap-2 bg-[#CAEB66] text-gray-700 dark:bg-white px-6 py-2 rounded-full cursor-pointer hover:scale-105 transition-all">
-                SignIn <img src={assets.arrow_icon} width={14} alt="" />
+                SignIn <img src={assets.arrow_icon} className="-rotate-45" width={14} alt="" />
             </a>
         </div>
         </motion.div>

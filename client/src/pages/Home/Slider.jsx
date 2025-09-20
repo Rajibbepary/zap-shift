@@ -41,10 +41,10 @@ const [currentSlide, setCurrentSlide] = useState(0);
                 {sliderData.map((slide, index) => (
                   <div
                     key={slide.id}
-                    className="flex flex-col-reverse md:flex-row  justify-between py-8 min-w-full"
+                    className="flex flex-col-reverse md:flex-row  justify-between py-4 min-w-full"
                   >
                       <img
-                        className="w-full h-full"
+                        className="w-full h-full object-cover"
                         src={slide.imgSrc}
                         alt={`Slide ${index + 1}`}
                       />
@@ -52,7 +52,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
                 ))}
               </div>
         
-              <div className="flex items-center justify-center gap-2 mt-8">
+              <div className="flex items-center justify-center gap-2 md:mt-4">
                 {sliderData.map((_, index) => (
                   <div
                     key={index}
