@@ -23,9 +23,9 @@ const FaqSection = () => {
         },
     ];
     return (
-         <>
+         <div className="w-full">
            
-            <div className="max-w-xl mt-32 mx-auto flex flex-col items-center justify-center px-4 md:px-0">
+            <div className="max-w-3xl mt-32 mx-auto flex flex-col items-center justify-center px-4 md:px-0">
                 <h1 className="text-3xl font-semibold text-gray-700 dark:text-white text-center">Looking for answer?</h1>
                 <p className="text-sm text-gray-700 dark:text-white pb-8 text-center">
                     Ship Beautiful Frontends Without the Overhead — Customizable, Scalable and Developer-Friendly UI Components.
@@ -46,7 +46,7 @@ const FaqSection = () => {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 

@@ -31,7 +31,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
     setCurrentSlide(index);
   };
     return (
-         <div className="overflow-hidden relative w-11/12 mx-auto">
+         <div className="overflow-hidden relative w-11/12 mx-auto ">
               <div
                 className="flex transition-transform duration-700 ease-in-out"
                 style={{
