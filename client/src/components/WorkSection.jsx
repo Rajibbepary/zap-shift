@@ -41,7 +41,7 @@ const services = [
 ];
 const WorkSection = () => {
     return (
-         <section className="py-16 px-6 md:px-20 bg-white/50 dark:bg-gray-900/70">
+         <section className="py-16 px-6 md:px-20 ">
       <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">
         How it Work
       </h2>
@@ -49,7 +49,7 @@ const WorkSection = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition p-6 flex flex-col items-start"
+            className="bg-white hover:scale-105 transition-all duration-500  dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg  p-6 flex flex-col items-start"
           >
             <div className="mb-4">
                 <img src={service.icon} className="w-20 h-20 object-cover" alt="" />
