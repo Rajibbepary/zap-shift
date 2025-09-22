@@ -1,4 +1,5 @@
 
+import CardSection from '../../components/CardSection';
 import WorkSection from '../../components/WorkSection';
 import FaqSection from './FaqSection';
 import Slider from './Slider';
@@ -8,8 +9,8 @@ const Home = () => {
         <div>
            <Slider/>
            <WorkSection/>
+           <CardSection/>
            <FaqSection/>
-             
         </div>
     )
 };

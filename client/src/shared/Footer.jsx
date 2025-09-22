@@ -4,8 +4,8 @@ import assets from '../assets/assets';
 const Footer = () => {
     return (
         <div>
-             <div className="w-full mt-30 w-full text-sm text-slate-500 bg-[#F9FBFF] dark:bg-gray-900 pt-10">
-            <div className="max-w-7xl mx-auto px-6 pt-16 flex flex-col items-center">
+             <div className="w-full mt-30 text-sm text-slate-500 bg-[#F9FBFF] dark:bg-gray-900 pt-10">
+            <div className="px-6 pt-16 flex flex-col items-center">
                  <div className="relative flex">
                 <img src={assets.logo} className="w-7 mb-2" alt="" />
                 <h3 className="font-extrabold absolute ml-4 top-4 text-gray-700 dark:text-white">Profast</h3>
@@ -23,7 +23,7 @@ const Footer = () => {
                 <p className='text-sm dark:text-white'>Contact</p>
             </div>
             <div className="border-t md:w-10/12 mx-auto border-slate-200">
-                <div className="max-w-7xl mx-auto px-6 py-6 text-center">
+                <div className="max-w-7xl mx-auto py-6 text-center">
                    <div className='flex justify-center items-center space-x-7'>
                     <img src={assets.facebook_icon} alt="" />
                     <img src={assets.linkedin_icon} alt="" />

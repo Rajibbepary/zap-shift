@@ -8,7 +8,7 @@ const RootLayout = () => {
   const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
     return (
         <div className='dark:bg-black relative'>
-            <Navbar theme={theme} setTheme={setTheme}/>
+        <Navbar theme={theme} setTheme={setTheme}/>
          <Outlet></Outlet>
          <Footer/>
         </div>
