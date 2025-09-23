@@ -3,7 +3,7 @@ import assets from '../assets/assets';
 
 const CardSection = () => {
     return (
-        <div className='w-10/12 mx-auto flex flex-col space-y-10'>
+        <div className='w-10/12 mx-auto flex flex-col gap-4'>
             <div className='flex max-sm:flex-col justify-center items-center gap-9 bg-[#FFFFFF] dark:bg-gray-800 shadow-xl p-6 rounded-xl hover:scale-105 transition-all duration-300'>
                 <div>
                     <img src={assets.livetracking} className='w-50' alt="" />
@@ -26,7 +26,7 @@ const CardSection = () => {
 
              <div className='flex max-sm:flex-col justify-center items-center gap-9 bg-[#FFFFFF] dark:bg-gray-800 shadow-xl p-6 rounded-xl hover:scale-105 transition-all duration-300'>
                 <div>
-                    <img src={assets.safe} className='w-50' alt="" />
+                    <img src={assets.safe} className='w-50 ' alt="" />
                 </div>
                 <div className='border-l-2 py-8 border-dashed dark:border-l-white border-gray-600'>
                     <h2 className='ml-4 dark:text-white text-gray-800 font-semibold text-xl'>24/7 Call Center Support</h2>

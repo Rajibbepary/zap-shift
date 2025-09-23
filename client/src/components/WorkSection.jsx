@@ -42,19 +42,19 @@ const services = [
 const WorkSection = () => {
     return (
          <section className="py-16 px-6 md:px-20 ">
-      <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">
+      <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white ">
         How it Work
       </h2>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 mt-6 md:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
           <div
             key={index}
             className="bg-white hover:scale-105 transition-all duration-500  dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg  p-6 flex flex-col items-start"
           >
-            <div className="mb-4">
+            <div className="mt-4">
                 <img src={service.icon} className="w-20 h-20 object-cover" alt="" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mt-2">
               {service.title}
             </h3>
             <p className="text-gray-600 text-sm dark:text-gray-300">{service.description}</p>

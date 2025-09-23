@@ -37,12 +37,12 @@ const FaqSection = () => {
          <div className="w-full">
            
             <div className="max-w-2xl mt-32 mx-auto flex flex-col items-center justify-center px-4 md:px-0">
-                <h1 className="text-3xl font-semibold text-gray-700 dark:text-white text-center mb-4">Looking for answer?</h1>
-                <p className="text-sm text-gray-700 dark:text-white pb-8 text-center">
+                <h1 className="text-3xl font-semibold text-gray-700 dark:text-white text-center">Looking for answer?</h1>
+                <p className="text-sm text-gray-700 mt-3 dark:text-white  text-center">
                     Ship Beautiful Frontends Without the Overhead — Customizable, Scalable and Developer-Friendly UI Components.
                 </p>
                 {faqs.map((faq, index) => (
-                    <div className="border-b border-slate-200 py-4 cursor-pointer w-full" key={index} onClick={() => setOpenIndex(openIndex === index ? null : index)}>
+                    <div className="border-b border-slate-200 mt-4 py-4 cursor-pointer w-full" key={index} onClick={() => setOpenIndex(openIndex === index ? null : index)}>
                         <div className="flex items-center justify-between">
                             <h3 className="text-base  text-gray-700 dark:text-white font-medium">
                                 {faq.question}
