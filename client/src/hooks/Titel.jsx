@@ -9,13 +9,13 @@ const Titel = ({title, desc}) => {
          whileInView={{ opacity: 1, y: 0}}
          transition={{duration: 0.6}}
          viewport={{once: true}}
-         className="text-2xl font-medium text-gray-500 dark:text-white/75 ">{title}</motion.h2> 
+         className="text-2xl sm:text-3xl font-medium text-gray-500 dark:text-white/75 ">{title}</motion.h2> 
          <motion.p
          initial={{ opacity: 0, y: 20}}
          whileInView={{ opacity: 1, y: 0}}
          transition={{duration: 0.5, delay:0.2}}
          viewport={{once: true}}
-         className="max-w-lg text-center text-sm text-gray-500 dark:text-white/75 mt-2 mb-6">{desc}</motion.p>  
+         className="max-w-lg text-center text-gray-500 dark:text-white/75 mt-4 mb-6">{desc}</motion.p>  
         </>
     );
 };
