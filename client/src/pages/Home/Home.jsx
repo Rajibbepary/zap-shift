@@ -1,5 +1,6 @@
 
-import CardSection from '../../components/CardSection';
+import BeMarChant from '../../components/BeMarChant';
+import BenefitSection from '../../components/BenefitSection';
 import WorkSection from '../../components/WorkSection';
 import FaqSection from './FaqSection';
 import Slider from './Slider';
@@ -9,7 +10,8 @@ const Home = () => {
         <div>
            <Slider/>
            <WorkSection/>
-           <CardSection/>
+           <BenefitSection/>
+           <BeMarChant/>
            <FaqSection/>
         </div>
     )
