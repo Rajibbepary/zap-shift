@@ -5,6 +5,7 @@ import assets from "../assets/assets";
 import { motion } from "framer-motion";
 
 import ThemeToggleBtn from "../components/ThemeToggleBtn";
+import { Link } from 'react-router';
 const Navbar = ({theme, setTheme}) => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -32,9 +33,11 @@ const Navbar = ({theme, setTheme}) => {
         <div className="flex items-center gap-2 sm:gap-4">
             <ThemeToggleBtn theme={theme} setTheme={setTheme}/>
             <img src={theme === 'dark' ? assets.menu_dark : assets.menuIcon} onClick={()=> setSidebarOpen(true)} className="w-8 sm:hidden" alt="" />
-            <a href="#contact-us" className="text-sm flex items-center gap-2 bg-[#CAEB66] text-gray-700 dark:bg-white px-6 py-2 rounded-full cursor-pointer hover:scale-105 transition-all">
+            <Link to={'/login'}>
+            <a  className="text-sm flex items-center gap-2 bg-[#CAEB66] text-gray-700 dark:bg-white px-6 py-2 rounded-full cursor-pointer hover:scale-105 transition-all">
                 SignIn <img src={assets.arrow_icon} className="-rotate-45" width={14} alt="" />
             </a>
+            </Link>
         </div>
         </motion.div>
     );
