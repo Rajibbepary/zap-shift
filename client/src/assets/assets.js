@@ -36,20 +36,9 @@ import linkedin_icon from './linkedin_icon.svg'
 import facebook_icon from './facebook_icon.svg'
 import instagram_icon from './instagram_icon.svg'
 import arrow_icon from './arrow_icon.svg'
-import icon0 from './banner/download (7).png'
-import icon1 from './banner/download (8).png'
-import icon2 from './banner/download (2).png'
-import icon3 from './banner/download (3).png'
-import icon4 from './banner/download (4).png'
-import icon5 from './banner/download (5).png'
+
 
 const assets = {
-    icon0,
-    icon2,
-    icon3,
-    icon4,
-    icon5,
-    icon1,
     banner1,
     banner2,
     banner3,

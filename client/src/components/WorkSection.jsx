@@ -1,42 +1,48 @@
 
-import assets from "../assets/assets";
+
+import { BsCashCoin, } from "react-icons/bs";
+import { TbTruckDelivery } from "react-icons/tb";
+import { GiWorld } from "react-icons/gi";
+import { BiSolidFactory } from "react-icons/bi";
+import { BsBuildingsFill } from "react-icons/bs";
+import { GiReturnArrow } from "react-icons/gi";
 
 const services = [
   {
     title: "Express & Standard Delivery",
     description:
       "We deliver parcels within 24–72 hours in Dhaka, Chittagong, Sylhet, Khulna, and Rajshahi. Express delivery available in Dhaka within 4–6 hours from pick-up to drop-off.",
-    icon:assets.icon0
+    icon:<TbTruckDelivery/>
   },
   {
     title: "Nationwide Delivery",
     description:
       "We deliver parcels nationwide with home delivery in every district, ensuring your products reach customers within 48–72 hours.",
-    icon:assets.icon1
+    icon:<GiWorld/>
   },
   {
     title: "Fulfillment Solution",
     description:
       "We also offer customized service with inventory management support, online order processing, packaging, and after sales support.",
-    icon:assets.icon2
+    icon:<BiSolidFactory/>
   },
   {
     title: "Cash on Home Delivery",
     description:
       "100% cash on delivery anywhere in Bangladesh with guaranteed safety of your product.",
-    icon:assets.icon3
+    icon:<BsCashCoin/>
   },
   {
     title: "Corporate Service / Contract In Logistics",
     description:
       "Customized corporate services which includes warehouse and inventory management support.",
-    icon:assets.icon4
+    icon:<BsBuildingsFill/>
   },
   {
     title: "Parcel Return",
     description:
       "Through our reverse logistics facility we allow end customers to return or exchange their products with online business merchants.",
-    icon:assets.icon5
+    icon:<GiReturnArrow/>
   }
 ];
 const WorkSection = () => {
@@ -52,7 +58,7 @@ const WorkSection = () => {
             className="bg-white/75 hover:scale-105 transition-all duration-500  dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg  p-6 flex flex-col items-start"
           >
             <div className="mt-4">
-                <img src={service.icon} className="w-20 h-20 object-cover" alt="" />
+                <div className="text-[#0dbed1] dark:text-white/75 text-4xl">{service.icon}</div>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white/75 mt-2">
               {service.title}
