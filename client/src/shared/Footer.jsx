@@ -4,7 +4,7 @@ import assets from '../assets/assets';
 const Footer = () => {
     return (
         <div>
-             <div className="w-full top-0 mt-16 text-sm text-slate-500 bg-[#F9FBFF] dark:bg-gray-900 pt-4">
+             <div className="w-full top-0  text-sm text-slate-500 bg-[#F9FBFF] dark:bg-gray-900 pt-4">
             <div className="px-6 pt-16 flex flex-col items-center">
                  <div className="relative flex">
                 <img src={assets.logo} className="w-7 mb-2" alt="" />

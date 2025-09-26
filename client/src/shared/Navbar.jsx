@@ -23,7 +23,7 @@ const Navbar = ({theme, setTheme}) => {
 
             <div className={`text-gray-700 dark:text-white sm:text-sm ${!sidebarOpen ? 'max-sm:w-0 overflow-hidden': 'max-sm:w-50 max-sm:pl-10'} max-sm:fixed top-0 bottom-0 right-0 max-sm:min-h-screen max-sm:h-full max-sm:flex-col max-sm:bg-[#CAEB66] max-sm:text-white max-sm:pt-20 flex sm:items-center gap-5 transition-all`}>
                 <img src={assets.closemenu} className="w-5 absolute right-4 top-4 sm:hidden" onClick={()=> setSidebarOpen(false)} alt="" />
-                <a onClick={()=>setSidebarOpen(false)} href="#" className="sm:hover:border-b">Home</a>
+                <a onClick={()=>setSidebarOpen(false)} href="/" className="sm:hover:border-b">Home</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#services" className="sm:hover:border-b">Services</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#our-work" className="sm:hover:border-b">Coverage</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">About Us</a>

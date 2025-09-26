@@ -7,7 +7,7 @@ const AuthLayout = () => {
           <Link to='/'>
            <div className="relative flex">
                 <img src={assets.logo} className="w-7 mb-2" alt="" />
-                <h3 className="font-extrabold absolute ml-4 top-4 text-gray-700 dark:text-white">Profast</h3>
+                <h3 className="font-extrabold absolute ml-4 top-4 text-gray-70">Profast</h3>
             </div>
           </Link>
           <div className="flex justify-center items-center mt-10">

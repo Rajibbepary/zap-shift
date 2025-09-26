@@ -35,7 +35,7 @@ const FaqSection = () => {
 
 
     return (
-         <div className="w-full">
+         <div className="w-full mb-8">
            
             <div className="max-w-2xl mt-10 mx-auto flex flex-col items-center justify-center px-4 md:px-0">
                <Titel title={'Frequently Asked Question (FAQ)'} desc={'Enhance posture, mobility, and well-being effortlessly with Posture Pro. Achieve proper alignment, reduce pain, and strengthen your body with ease!'}/>
