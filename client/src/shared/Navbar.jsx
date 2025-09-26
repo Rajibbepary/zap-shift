@@ -28,7 +28,7 @@ const Navbar = ({theme, setTheme}) => {
                 <a onClick={()=>setSidebarOpen(false)} href="#our-work" className="sm:hover:border-b">Coverage</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">About Us</a>
                  <a onClick={()=>setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">Pricing</a>
-                  <a onClick={()=>setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">Be a Rider</a>
+                  <a onClick={()=>setSidebarOpen(false)} href="/rider" className="sm:hover:border-b">Be a Rider</a>
             </div>
         <div className="flex items-center gap-2 sm:gap-4">
             <ThemeToggleBtn theme={theme} setTheme={setTheme}/>
