@@ -1,15 +1,32 @@
 /* eslint-disable no-unused-vars */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import assets from "../assets/assets";
 import { motion } from "framer-motion";
 
 import ThemeToggleBtn from "../components/ThemeToggleBtn";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import { AuthContext } from "../contexts/AuthContexts/AuthContext";
 const Navbar = ({theme, setTheme}) => {
-
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const { user, logOut } = useContext(AuthContext);
+    const navigate = useNavigate();
 
+ const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        navigate("/"); // Redirect after logout
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleAuthButtonClick = () => {
+    if (user) {
+      handleLogOut();
+    } else {
+      navigate("/login"); // Redirect to login
+    }
+  };
     return (
         <motion.div
         initial={{opacity: 0, y: -50}}
@@ -34,9 +51,11 @@ const Navbar = ({theme, setTheme}) => {
             <ThemeToggleBtn theme={theme} setTheme={setTheme}/>
             <img src={theme === 'dark' ? assets.menu_dark : assets.menuIcon} onClick={()=> setSidebarOpen(true)} className="w-8 sm:hidden" alt="" />
             <Link to={'/login'}>
-            <a  className="text-sm flex items-center gap-2 bg-[#CAEB66] text-gray-700 dark:bg-white px-6 py-2 rounded-full cursor-pointer hover:scale-105 transition-all">
-                SignIn <img src={assets.arrow_icon} className="-rotate-45" width={14} alt="" />
-            </a>
+            <button onClick={handleAuthButtonClick}
+            className="text-sm flex items-center gap-2 bg-[#CAEB66] text-gray-700 dark:bg-white px-6 py-2 rounded-full cursor-pointer hover:scale-105 transition-all">
+            {user ? "Logout" : "Login"}
+             <img src={assets.arrow_icon} className="-rotate-45" width={14} alt="" />
+            </button>
             </Link>
         </div>
         </motion.div>

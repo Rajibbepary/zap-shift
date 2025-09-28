@@ -1,15 +1,41 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useForm } from "react-hook-form"
+import useAuth from "../../hooks/useAuth";
 
 
 const Login = () => {
+    const navigate = useNavigate()
     const [state, setState] = useState("login");
-    
-     const { register, handleSubmit } = useForm()
-
+    const { register, handleSubmit } = useForm()
+    const {createUser,signInWithGoogle,} = useAuth()
   const onSubmit = (data) => {
     console.log(data)
+    createUser(data.email, data.password)
+    .then( result =>{
+        console.log(result.user)
+        navigate('/')
+    })
+    .catch(error =>{
+        console.log(error)
+    })
   }
+
+const handleGoogleSignIn = () => {
+       signInWithGoogle()
+      .then(result =>{
+        console.log(result.user)
+          navigate('/')
+        })
+      .catch(error =>{
+        console.error(error)
+      })
+      
+    }
+  
+
+
     return (
         <div> 
              <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 m-auto items-start p-8 py-12 w-80 sm:w-[352px] text-gray-500 rounded-lg">
@@ -42,7 +68,7 @@ const Login = () => {
             <button className="bg-[#CAEB66] transition-all text-white w-full py-2 rounded-md cursor-pointer">
                 {state === "register" ? "Create Account" : "Login"}
             </button>
-             <button type="submit" className="w-full flex items-center gap-2 justify-center my-3 bg-white border border-gray-500/30 py-2.5 rounded-full text-gray-800">
+             <button  onClick={handleGoogleSignIn} type="submit" className="w-full flex items-center gap-2 justify-center my-3 bg-white border border-gray-500/30 py-2.5 rounded-full text-gray-800">
                 <img className="h-4 w-4" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/login/googleFavicon.png" alt="googleFavicon" />
                 Log in with Apple
             </button>
