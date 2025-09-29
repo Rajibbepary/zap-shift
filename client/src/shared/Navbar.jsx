@@ -42,7 +42,7 @@ const Navbar = ({theme, setTheme}) => {
                 <img src={assets.closemenu} className="w-5 absolute right-4 top-4 sm:hidden" onClick={()=> setSidebarOpen(false)} alt="" />
                 <a onClick={()=>setSidebarOpen(false)} href="/" className="sm:hover:border-b">Home</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#services" className="sm:hover:border-b">Services</a>
-                <a onClick={()=>setSidebarOpen(false)} href="#our-work" className="sm:hover:border-b">Coverage</a>
+                <a onClick={()=>setSidebarOpen(false)} href="coverage" className="sm:hover:border-b">Coverage</a>
                 <a onClick={()=>setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">About Us</a>
                  <a onClick={()=>setSidebarOpen(false)} href="#contact-us" className="sm:hover:border-b">Pricing</a>
                   <a onClick={()=>setSidebarOpen(false)} href="/rider" className="sm:hover:border-b">Be a Rider</a>
