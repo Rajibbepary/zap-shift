@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import assets from "../assets/assets";
 import { motion } from "framer-motion";
@@ -107,7 +108,7 @@ const Navbar = ({ theme, setTheme }) => {
 
         <NavLink
           onClick={() => setSidebarOpen(false)}
-          to="/pricing"
+          to="/sendparcel"
           className={({ isActive }) =>
             isActive
               ? "text-[#CAEB66] font-semibold"

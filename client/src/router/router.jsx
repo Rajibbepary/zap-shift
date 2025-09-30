@@ -6,6 +6,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Auth/Login";
 import Rider from "../pages/Rider/Rider";
 import Coverage from "../pages/Coverage/Coverage";
+import SendParcel from "../pages/SendParcel/SendParcel";
 
 export const router = createBrowserRouter([
   {
@@ -19,11 +20,16 @@ export const router = createBrowserRouter([
     {
       path:'coverage',
       element:<Coverage/>,
-       loader: () => fetch('./serviceCenter.json')
+      loader: () => fetch('./serviceCenter.json')
     },
     {
       path:'rider',
       element:<Rider/>
+    },
+    {
+      path:"sendparcel",
+      element:<SendParcel/>,
+      loader: () => fetch('./serviceCenter.json')
     }
    ] 
   },
