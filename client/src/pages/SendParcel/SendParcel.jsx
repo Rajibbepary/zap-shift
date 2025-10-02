@@ -1,18 +1,116 @@
 
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
+import { useLoaderData } from "react-router";
+import useAuth from './../../hooks/useAuth';
+
+const generateTrackingID = () => {
+    const date = new Date();
+    const datePart = date.toISOString().split("T")[0].replace(/-/g, "");
+    const rand = Math.random().toString(36).substring(2, 7).toUpperCase();
+    return `PCL-${datePart}-${rand}`;
+};
+
 
 const SendParcel = () => {
 
     const {
         register,
         handleSubmit,
-        watch,
-        // formState: { errors },
+        watch
     } = useForm();
+
+    const { user } = useAuth();
+   
+    const serviceCenters = useLoaderData();
+    // Extract unique regions
+    const uniqueRegions = [...new Set(serviceCenters.map((w) => w.region))];
+    // Get districts by region
+    const getDistrictsByRegion = (region) =>
+    serviceCenters.filter((w) => w.region === region).map((w) => w.district);
+
+    const parcelType = watch("type");
+    const senderRegion = watch("sender_region");
+    const receiverRegion = watch("receiver_region");
+
+    const onSubmit = (data) => {
+        const weight = parseFloat(data.weight) || 0;
+        const isSameDistrict = data.sender_center === data.receiver_center;
+
+        let baseCost = 0;
+        let extraCost = 0;
+        let breakdown = "";
+
+        if (data.type === "document") {
+            baseCost = isSameDistrict ? 60 : 80;
+            breakdown = `Document delivery ${isSameDistrict ? "within" : "outside"} the district.`;
+        } else {
+            if (weight <= 3) {
+                baseCost = isSameDistrict ? 110 : 150;
+                breakdown = `Non-document up to 3kg ${isSameDistrict ? "within" : "outside"} the district.`;
+            } else {
+                const extraKg = weight - 3;
+                const perKgCharge = extraKg * 40;
+                const districtExtra = isSameDistrict ? 0 : 40;
+                baseCost = isSameDistrict ? 110 : 150;
+                extraCost = perKgCharge + districtExtra;
+
+                breakdown = `
+        Non-document over 3kg ${isSameDistrict ? "within" : "outside"} the district.<br/>
+        Extra charge: ৳40 x ${extraKg.toFixed(1)}kg = ৳${perKgCharge}<br/>
+        ${districtExtra ? "+ ৳40 extra for outside district delivery" : ""}
+      `;
+            }
+        }
+
+        const totalCost = baseCost + extraCost;
+
+        Swal.fire({
+            title: "Delivery Cost Breakdown",
+            icon: "info",
+            html: `
+      <div class="text-left text-base space-y-2">
+        <p><strong>Parcel Type:</strong> ${data.type}</p>
+        <p><strong>Weight:</strong> ${weight} kg</p>
+        <p><strong>Delivery Zone:</strong> ${isSameDistrict ? "Within Same District" : "Outside District"}</p>
+        <hr class="my-2"/>
+        <p><strong>Base Cost:</strong> ৳${baseCost}</p>
+        ${extraCost > 0 ? `<p><strong>Extra Charges:</strong> ৳${extraCost}</p>` : ""}
+        <div class="text-gray-500 text-sm">${breakdown}</div>
+        <hr class="my-2"/>
+        <p class="text-xl font-bold text-green-600">Total Cost: ৳${totalCost}</p>
+      </div>
+    `,
+            showDenyButton: true,
+            confirmButtonText: "💳 Proceed to Payment",
+            denyButtonText: "✏️ Continue Editing",
+            confirmButtonColor: "#16a34a",
+            denyButtonColor: "#d3d3d3",
+            customClass: {
+                popup: "rounded-xl shadow-md px-6 py-6",
+            },
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const parcelData = {
+                    ...data,
+                    cost: totalCost,
+                    created_by: user.email,
+                    payment_status: 'unpaid',
+                    delivery_status: 'not_collected',
+                    creation_date: new Date().toISOString(),
+                    tracking_id: generateTrackingID(),
+                };
+
+                console.log("Ready for payment:", parcelData);
+                
+            }
+        });
+    };
+
 
 return (
  <div className="w-11/12 mx-auto mt-10 dark:bg-gray-800 p-6 rounded-xl">
-    <form onSubmit={handleSubmit()}>
+    <form onSubmit={handleSubmit(onSubmit)}>
         <div>
             <h2 className="text-3xl text-black/70 dark:text-white">Add Parcel</h2>
             <div className="border-b py-2 ">
@@ -21,13 +119,13 @@ return (
             
             <div className="flex gap-6 mt-2">
                 <div className="flex gap-1 items-center">
-                    <input type="radio" name="parcelType" value="Document" 
+                    <input type="radio" name="parcelType" value="document" 
                      {...register("type", { required: true })}
                     id="document" />
                     <label htmlFor="document" className="text-sm text-black/70 dark:text-white ">Document</label>
                 </div>
                 <div className="flex gap-1 items-center">
-                    <input type="radio" name="parcelType" value="Not-Document"
+                    <input type="radio" name="parcelType" value="non-document"
                     {...register("type", { required: true })}
                     id="not-document" />
                     <label htmlFor="non-document" className="text-sm dark:text-white text-black/70">Non-Document</label>
@@ -46,7 +144,8 @@ return (
                     </div>
                     <div className="w-full">
                         <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Parcel Weight(KG)</label>
-                        <input className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" type="number" placeholder="Parcel Weight(KG)" 
+                        <input className={`h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300 ${parcelType !== "non-document" ? "bg-gray-100 cursor-not-allowed" : "" }`} type="number" placeholder="Parcel Weight(KG)" 
+                         disabled={parcelType !== "non-document"}
                          {...register("weight", { required: true })}
                         required />
                     </div>
@@ -65,12 +164,12 @@ return (
                         placeholder="Sender name" required />
                     </div>
                     <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Sender Pickup Wire house</label>
-                        <select  {...register("sender_center", { required: true })} className="h-12 p-2 mt-2 w-full text-sm border border-gray-500/30 rounded outline-none focus:border-indigo-300" placeholder='Select your house' required>
-                          <option value="">Select Service Center</option>
-                                {/* {getDistrictsByRegion(senderRegion).map((district) => (
-                                    <option key={district} value={district}>{district}</option>
-                                ))} */}
+                         <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Your Region</label>
+                        <select {...register("sender_region", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  placeholder="Your region" name="" id="">
+                             <option value="">Select Region</option>
+                                {uniqueRegions.map((region) => (
+                                    <option key={region} value={region}>{region}</option>
+                                ))}
                         </select>
                     </div>
                     
@@ -87,12 +186,12 @@ return (
                     
                 </div>
                  <div className="w-full mt-2">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Your Region</label>
-                        <select {...register("sender_region", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  placeholder="Your region" name="" id="">
-                             <option value="">Select Region</option>
-                                {/* {uniqueRegions.map((region) => (
-                                    <option key={region} value={region}>{region}</option>
-                                ))} */}
+                       <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Sender Pickup Wire house</label>
+                        <select  {...register("sender_center", { required: true })} className="h-12 p-2 mt-2 w-full text-sm border border-gray-500/30 rounded outline-none focus:border-indigo-300" placeholder='Select your house' required>
+                          <option value="">Select Service Center</option>
+                                {getDistrictsByRegion(senderRegion).map((district) => (
+                                    <option key={district} value={district}>{district}</option>
+                                ))}
                         </select>
                     </div>
 
@@ -115,9 +214,9 @@ return (
                         <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Deliver Wire House</label>
                         <select  {...register("receiver_region", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  placeholder="Your region" name="" id="">
                              <option value="">Select Region</option>
-                                {/* {uniqueRegions.map((region) => (
+                                {uniqueRegions.map((region) => (
                                     <option key={region} value={region}>{region}</option>
-                                ))} */}
+                                ))}
                         </select>
                     </div>
                 </div>
@@ -136,9 +235,9 @@ return (
                         <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Region</label>
                         <select {...register("receiver_center", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  placeholder="Your region" name="" id="">
                               <option value="">Select Service Center</option>
-                                {/* {getDistrictsByRegion(receiverRegion).map((district) => (
+                                {getDistrictsByRegion(receiverRegion).map((district) => (
                                     <option key={district} value={district}>{district}</option>
-                                ))} */}
+                                ))}
                         </select>
                     </div>
                  <div className="w-full mt-2">
