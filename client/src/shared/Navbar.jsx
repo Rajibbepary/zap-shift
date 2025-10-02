@@ -12,6 +12,7 @@ const Navbar = ({ theme, setTheme }) => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {
+    
     logOut()
       .then(() => {
         navigate("/"); 
@@ -57,7 +58,7 @@ const Navbar = ({ theme, setTheme }) => {
           alt=""
         />
 
-        {/* ✅ Active link will change text color */}
+        
         <NavLink
           onClick={() => setSidebarOpen(false)}
           to="/"
