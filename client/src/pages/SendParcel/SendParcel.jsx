@@ -26,8 +26,7 @@ const SendParcel = () => {
     // Extract unique regions
     const uniqueRegions = [...new Set(serviceCenters.map((w) => w.region))];
     // Get districts by region
-    const getDistrictsByRegion = (region) =>
-    serviceCenters.filter((w) => w.region === region).map((w) => w.district);
+    const getDistrictsByRegion = (region) =>serviceCenters.filter((w) => w.region === region).map((w) => w.district);
 
     const parcelType = watch("type");
     const senderRegion = watch("sender_region");
@@ -100,9 +99,7 @@ const SendParcel = () => {
                     creation_date: new Date().toISOString(),
                     tracking_id: generateTrackingID(),
                 };
-
                 console.log("Ready for payment:", parcelData);
-                
             }
         });
     };
@@ -131,7 +128,6 @@ return (
                     <label htmlFor="non-document" className="text-sm dark:text-white text-black/70">Non-Document</label>
                 </div>
             </div>
-
         </div>
       
             <div className="border-b border-gray-500/30">
@@ -165,7 +161,7 @@ return (
                     </div>
                     <div className="w-full">
                          <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Your Region</label>
-                        <select {...register("sender_region", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  placeholder="Your region" name="" id="">
+                        <select {...register("sender_region", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  name="" id="">
                              <option value="">Select Region</option>
                                 {uniqueRegions.map((region) => (
                                     <option key={region} value={region}>{region}</option>
@@ -187,7 +183,7 @@ return (
                 </div>
                  <div className="w-full mt-2">
                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Sender Pickup Wire house</label>
-                        <select  {...register("sender_center", { required: true })} className="h-12 p-2 mt-2 w-full text-sm border border-gray-500/30 rounded outline-none focus:border-indigo-300" placeholder='Select your house' required>
+                        <select  {...register("sender_center", { required: true })} className="h-12 p-2 mt-2 w-full text-sm border border-gray-500/30 rounded outline-none focus:border-indigo-300"  required>
                           <option value="">Select Service Center</option>
                                 {getDistrictsByRegion(senderRegion).map((district) => (
                                     <option key={district} value={district}>{district}</option>
