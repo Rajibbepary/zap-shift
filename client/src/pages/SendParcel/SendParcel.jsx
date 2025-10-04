@@ -66,7 +66,7 @@ const SendParcel = () => {
 
         Swal.fire({
             title: "Delivery Cost Breakdown",
-            icon: "info",
+            //icon: "info",
             html: `
       <div class="text-left text-base space-y-2">
         <p><strong>Parcel Type:</strong> ${data.type}</p>
@@ -149,99 +149,165 @@ return (
 
             </div>
             <div className="flex flex-col md:flex-row justify- gap-8 mt-5">
-                {/* sender details form */}
+               
+               {/* Sender Details */}
                 <div className="flex-1">
-                    <h2 className="text-xl mb-2 text-black/70 dark:text-white">Sender Details</h2>
-                <div className=" flex flex-col md:flex-row items-center gap-4">
+                <h2 className="text-xl mb-2 text-black/70 dark:text-white">Sender Details</h2>
+
+                <div className="flex flex-col md:flex-row items-center gap-4">
                     <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Sender Name</label>
-                        <input className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" type="text" 
-                         {...register("sender_name", { required: true })}
-                        placeholder="Sender name" required />
-                    </div>
-                    <div className="w-full">
-                         <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Your Region</label>
-                        <select {...register("sender_region", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  name="" id="">
-                             <option value="">Select Region</option>
-                                {uniqueRegions.map((region) => (
-                                    <option key={region} value={region}>{region}</option>
-                                ))}
-                        </select>
-                    </div>
-                    
-                </div>
-                <div className=" flex flex-col md:flex-row items-center gap-4 mt-2">
-                    <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Address</label>
-                        <input {...register("sender_address", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" type="text" placeholder="Address" required />
-                    </div>
-                    <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Sender Contact No</label>
-                        <input  {...register("sender_contact", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" type="text" placeholder="Sender contact on" required />
-                    </div>
-                    
-                </div>
-                 <div className="w-full mt-2">
-                       <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Sender Pickup Wire house</label>
-                        <select  {...register("sender_center", { required: true })} className="h-12 p-2 mt-2 w-full text-sm border border-gray-500/30 rounded outline-none focus:border-indigo-300"  required>
-                          <option value="">Select Service Center</option>
-                                {getDistrictsByRegion(senderRegion).map((district) => (
-                                    <option key={district} value={district}>{district}</option>
-                                ))}
-                        </select>
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="sender_name">Sender Name</label>
+                    <input 
+                        {...register("sender_name", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                        type="text" 
+                        placeholder="Sender name" 
+                        required 
+                    />
                     </div>
 
-                     <div className="w-full mt-2">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Pickup Instruction</label>
-                        <textarea {...register("pickup_instruction", { required: true })} className="h-20 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" name="" id="" placeholder="Pickup instruction" required >
-                        </textarea>
+                    <div className="w-full">
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="sender_region">Sender Region</label>
+                    <select 
+                        {...register("sender_region", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  
+                        required
+                    >
+                        <option value="">Select Region</option>
+                        {uniqueRegions.map((region) => (
+                        <option key={region} value={region}>{region}</option>
+                        ))}
+                    </select>
                     </div>
                 </div>
-               
-               <div className="flex-1">
-                {/* Receiver Details */}
+
+                <div className="flex flex-col md:flex-row items-center gap-4 mt-2">
+                    <div className="w-full">
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="sender_address">Sender Address</label>
+                    <input 
+                        {...register("sender_address", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                        type="text" 
+                        placeholder="Sender address" 
+                        required 
+                    />
+                    </div>
+
+                    <div className="w-full">
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="sender_contact">Sender Contact No</label>
+                    <input  
+                        {...register("sender_contact", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                        type="text" 
+                        placeholder="Sender contact no" 
+                        required 
+                    />
+                    </div>
+                </div>
+
+                <div className="w-full mt-2">
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="sender_center">Sender Service Center</label>
+                    <select  
+                    {...register("sender_center", { required: true })} 
+                    className="h-12 p-2 mt-2 w-full text-sm border border-gray-500/30 rounded outline-none focus:border-indigo-300"  
+                    required
+                    >
+                    <option value="">Select Service Center</option>
+                    {senderRegion && getDistrictsByRegion(senderRegion).map((district) => (
+                        <option key={district} value={district}>{district}</option>
+                    ))}
+                    </select>
+                </div>
+
+                <div className="w-full mt-2">
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="pickup_instruction">Pickup Instruction</label>
+                    <textarea 
+                    {...register("pickup_instruction", { required: true })} 
+                    className="h-20 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                    placeholder="Pickup instruction" 
+                    required 
+                    />
+                </div>
+                </div>
+
+              {/* Receiver Details */}
+                <div className="flex-1">
                 <h3 className="text-black/70 dark:text-white text-xl mb-2">Receiver Details</h3>
-                 <div className=" flex flex-col md:flex-row items-center gap-4">
+                
+                <div className="flex flex-col md:flex-row items-center gap-4">
                     <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Name</label>
-                        <input {...register("receiver_name", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" type="text" placeholder="Receiver name" required />
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="receiver_name">Receiver Name</label>
+                    <input 
+                        {...register("receiver_name", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                        type="text" 
+                        placeholder="Receiver name" 
+                        required 
+                    />
                     </div>
+
                     <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Deliver Wire House</label>
-                        <select  {...register("receiver_region", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  placeholder="Your region" name="" id="">
-                             <option value="">Select Region</option>
-                                {uniqueRegions.map((region) => (
-                                    <option key={region} value={region}>{region}</option>
-                                ))}
-                        </select>
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="receiver_region">Receiver Region</label>
+                    <select 
+                        {...register("receiver_region", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"
+                        required
+                    >
+                        <option value="">Select Region</option>
+                        {uniqueRegions.map((region) => (
+                        <option key={region} value={region}>{region}</option>
+                        ))}
+                    </select>
                     </div>
                 </div>
-                {/* second div */}
-                <div className=" flex flex-col md:flex-row items-center gap-4 mt-2">
+
+                <div className="flex flex-col md:flex-row items-center gap-4 mt-2">
                     <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Address</label>
-                        <input {...register("receiver_address", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" type="text" placeholder="Receiver address" required />
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="receiver_address">Receiver Address</label>
+                    <input 
+                        {...register("receiver_address", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                        type="text" 
+                        placeholder="Receiver address" 
+                        required 
+                    />
                     </div>
                     <div className="w-full">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Contact On</label>
-                        <input  {...register("receiver_contact", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" placeholder="Receiver contact on" type="text" required />
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="receiver_contact">Receiver Contact No</label>
+                    <input  
+                        {...register("receiver_contact", { required: true })} 
+                        className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                        placeholder="Receiver contact no" 
+                        type="text" 
+                        required 
+                    />
                     </div>
                 </div>
-                 <div className="w-full mt-2">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Region</label>
-                        <select {...register("receiver_center", { required: true })} className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"  placeholder="Your region" name="" id="">
-                              <option value="">Select Service Center</option>
-                                {getDistrictsByRegion(receiverRegion).map((district) => (
-                                    <option key={district} value={district}>{district}</option>
-                                ))}
-                        </select>
-                    </div>
-                 <div className="w-full mt-2">
-                        <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Receiver Instruction</label>
-                        <textarea {...register("delivery_instruction", { required: true })} className="h-20 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" name="" id="" placeholder="Receiver instruction" required >
-                        </textarea>
-                    </div>
-               </div>
+
+                <div className="w-full mt-2">
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="receiver_center">Receiver Service Center</label>
+                    <select  
+                    {...register("receiver_center", { required: true })} 
+                    className="h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300"
+                    required
+                    >
+                    <option value="">Select Service Center</option>
+                    {receiverRegion && getDistrictsByRegion(receiverRegion).map((district) => (
+                        <option key={district} value={district}>{district}</option>
+                    ))}
+                    </select>
+                </div>
+
+                <div className="w-full mt-2">
+                    <label className="text-black/70 dark:text-white text-sm" htmlFor="delivery_instruction">Receiver Instruction</label>
+                    <textarea 
+                    {...register("delivery_instruction", { required: true })} 
+                    className="h-20 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300" 
+                    placeholder="Receiver instruction" 
+                    required 
+                    />
+                </div>
+                </div>
             </div>
             <button type="submit" className="bg-[#CAEB66] md:w-1/2 w-full h-10  mt-4 rounded-xl mb-8">Proceed to Confirm Booking</button>
        </form>     
