@@ -25,10 +25,11 @@ const Footer = () => {
             <div className="border-t md:w-10/12 mx-auto border-slate-200">
                 <div className="max-w-7xl mx-auto py-6 text-center">
                    <div className='flex justify-center items-center space-x-7'>
-                    <img src={assets.facebook_icon} alt="" />
-                    <img src={assets.linkedin_icon} alt="" />
-                     <img src={assets.instagram_icon} alt="" />
-                    <img src={assets.twitter_icon} alt="" />
+                   
+                   <div className='hover:bg-[#1877F2] rounded-full p-2 scale-z-150 border-0 transition-opacity ease-in duration-300'> <img src={assets.facebook_icon} alt="" /></div>
+                   <div className='hover:bg-[#0A66C2] rounded-full p-2 scale-z-150 border-0 transition-opacity ease-in duration-300'> <img src={assets.linkedin_icon} alt="" /></div>
+                    <div className='hover:bg-[#1DA1F2] rounded-full p-2 scale-z-150 border-0 transition-opacity ease-in duration-300'>  <img src={assets.twitter_icon} alt="" /></div>
+                    <div className='hover:bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 text-white rounded-full p-2 scale-z-150 border-0 transition-opacity ease-in duration-300'> <img src={assets.instagram_icon} alt="" /></div>
                    </div>
                 </div>
             </div>
