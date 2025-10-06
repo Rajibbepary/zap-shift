@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 import { useLoaderData } from "react-router";
 import useAuth from './../../hooks/useAuth';
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const generateTrackingID = () => {
     const date = new Date();
@@ -21,7 +22,7 @@ const SendParcel = () => {
     } = useForm();
 
     const { user } = useAuth();
-   
+   const axiosSecure = useAxiosSecure();
     const serviceCenters = useLoaderData();
     // Extract unique regions
     const uniqueRegions = [...new Set(serviceCenters.map((w) => w.region))];
@@ -99,7 +100,11 @@ const SendParcel = () => {
                     creation_date: new Date().toISOString(),
                     tracking_id: generateTrackingID(),
                 };
-                console.log("Ready for payment:", parcelData);
+               
+                axiosSecure.post('/parcels',parcelData)
+                .then(res=>{
+                    console.log(res.data)
+                })
             }
         });
     };
