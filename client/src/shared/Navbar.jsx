@@ -130,6 +130,22 @@ const Navbar = ({ theme, setTheme }) => {
         >
           Be a Rider
         </NavLink>
+
+      {
+        user && <>
+          <NavLink
+          onClick={() => setSidebarOpen(false)}
+          to="/dashboard"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#CAEB66] font-semibold"
+              : "text-gray-700 dark:text-white hover:text-[#CAEB66]"
+          }
+        >
+          Dashboard
+        </NavLink>
+        </>
+      }
       </div>
 
       {/* Right Section */}

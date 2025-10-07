@@ -104,6 +104,16 @@ const SendParcel = () => {
                 axiosSecure.post('/parcels',parcelData)
                 .then(res=>{
                     console.log(res.data)
+                     if (res.data.insertedId) {
+                            // TODO: redirect to a payment page 
+                            Swal.fire({
+                                title: "Redirecting...",
+                                text: "Proceeding to payment gateway.",
+                                icon: "success",
+                                timer: 1500,
+                                showConfirmButton: false,
+                            });
+                        }
                 })
             }
         });
@@ -147,7 +157,7 @@ return (
                         <label className="text-black/70 dark:text-white text-sm" htmlFor="name">Parcel Weight(KG)</label>
                         <input className={`h-12 p-2 mt-2 w-full border text-sm border-gray-500/30 rounded outline-none focus:border-indigo-300 ${parcelType !== "non-document" ? "bg-gray-100 cursor-not-allowed" : "" }`} type="number" placeholder="Parcel Weight(KG)" 
                          disabled={parcelType !== "non-document"}
-                         {...register("weight", { required: true })}
+                         {...register("weight")}
                         required />
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import Rider from "../pages/Rider/Rider";
 import Coverage from "../pages/Coverage/Coverage";
 import SendParcel from "../pages/SendParcel/SendParcel";
 import PrivateRoute from "../routes/PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,15 @@ export const router = createBrowserRouter([
         path:'login',
         element:<Login/>
       }
+    ]
+  },
+  {
+    path:'/dashboard',
+    element:<PrivateRoute>
+      <DashboardLayout/>
+    </PrivateRoute>,
+    children: [
+      
     ]
   }
 ]);
