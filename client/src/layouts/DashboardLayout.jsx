@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import assets from '../assets/assets';
+import { AuthContext } from '../contexts/AuthContexts/AuthContext';
+import ThemeToggleBtn from '../components/ThemeToggleBtn';
+import { Link, useNavigate } from 'react-router-dom';
 
 const DashboardLayout = () => {
+  const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
+const { user, logOut } = useContext(AuthContext);
+const navigate = useNavigate();
+
+const handleLogOut = () => {
+    
+    logOut()
+      .then(() => {
+        navigate("/"); 
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleAuthButtonClick = () => {
+    if (user) {
+      handleLogOut();
+    } else {
+      navigate("/login"); 
+    }
+  };
+
     const dashboardicon = (
         <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Zm16 14a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2ZM4 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6Zm16-2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6Z" />
@@ -27,21 +52,37 @@ const DashboardLayout = () => {
 
     return (
         <>
-            <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">
-                <a href="https://prebuiltui.com">
-                    <img className="h-9" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/dummyLogoColored.svg" alt="dummyLogoColored" />
-                </a>
+            <div className="flex dark:bg-black relative items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">
+                <Link to={'/'}>
+                 <div className="relative flex">
+                <img src={assets.logo} className="w-5" alt="" />
+                <h3 className="font-extrabold absolute ml-3 top-2 text-gray-700 dark:text-white">
+                Profast
+                </h3>
+            </div>
+                </Link>
                 <div className="flex items-center gap-5 text-gray-500">
-                    <p>Hi! Admin</p>
-                    <button className='border rounded-full text-sm px-4 py-1'>Logout</button>
+                     <ThemeToggleBtn theme={theme} setTheme={setTheme} />
+        <button
+          onClick={handleAuthButtonClick}
+          className="text-sm flex items-center gap-2 bg-[#CAEB66] text-gray-700 dark:bg-white px-6 py-2 rounded-full cursor-pointer hover:scale-105 transition-all"
+        >
+          {user ? "Logout" : ""}
+          <img
+            src={assets.arrow_icon}
+            className="-rotate-45"
+            width={14}
+            alt=""
+          />
+        </button>
                 </div>
             </div>
-            <div className="md:w-64 w-16 border-r h-[550px] text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
+            <div className="md:w-64 w-16 bg-white/50 dark:bg-gray-900/70 border-r h-[550px] text-base dark:border-gray-600 border-gray-300 pt-4 flex flex-col transition-all duration-300">
                 {sidebarLinks.map((item, index) => (
                     <a href={item.path} key={index}
                         className={`flex items-center py-3 px-4 gap-3 
-                            ${index === 0 ? "border-r-4 md:border-r-[6px] bg-indigo-500/10 border-indigo-500 text-indigo-500"
-                                : "hover:bg-gray-100/90 border-white text-gray-700"
+                            ${index === 0 ? "border-r-4 md:border-r-[6px] border-[#CAEB66] text-[#CAEB66]"
+                                : "hover:bg-gray-100/90 border-white text-gray-700 dark:text-white"
                             }`
                         }
                     >
