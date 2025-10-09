@@ -52,7 +52,7 @@ const handleLogOut = () => {
 
     return (
         <>
-            <div className="flex dark:bg-black relative items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">
+            <div className="flex  bg-white/50 dark:bg-gray-900/70 items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 transition-all duration-300">
                 <Link to={'/'}>
                  <div className="relative flex">
                 <img src={assets.logo} className="w-5" alt="" />
@@ -77,7 +77,7 @@ const handleLogOut = () => {
         </button>
                 </div>
             </div>
-            <div className="md:w-64 w-16 bg-white/50 dark:bg-gray-900/70 border-r h-[550px] text-base dark:border-gray-600 border-gray-300 pt-4 flex flex-col transition-all duration-300">
+            <div className="md:w-64 w-16 dark:bg-gray-900/70 border-r h-[550px] text-base dark:border-gray-600 border-gray-300 pt-4 flex flex-col transition-all duration-300">
                 {sidebarLinks.map((item, index) => (
                     <a href={item.path} key={index}
                         className={`flex items-center py-3 px-4 gap-3 

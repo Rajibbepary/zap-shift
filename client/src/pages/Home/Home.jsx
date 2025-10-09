@@ -2,6 +2,7 @@
 import BeMarChant from '../../components/BeMarChant';
 import BenefitSection from '../../components/BenefitSection';
 import ClientTestominal from '../../components/ClientTestominal';
+import TopButton from '../../components/TopButton';
 import TrustedBrand from '../../components/TrustedBrand';
 import WorkSection from '../../components/WorkSection';
 import FaqSection from './FaqSection';
@@ -12,6 +13,7 @@ const Home = () => {
         <div>
            <Slider/>
            <WorkSection/>
+           <TopButton/>
            <TrustedBrand/>
            <BenefitSection/>
            <BeMarChant/>
