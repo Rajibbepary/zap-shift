@@ -90,39 +90,50 @@ const MyParcel = () => {
                                     <td className="px-4 py-3 text-sm">{formatDate(parcel.creation_date)}</td>
                                       <td>৳{parcel.cost}</td>
                             <td className="px-4 py-3">
-                                <span
-                                    className={`badge ${parcel.payment_status === "paid"
-                                        ? "badge-success"
-                                        : "badge-error"
-                                        }`}
-                                >
-                                    {parcel.payment_status}
-                                </span>
-                            </td>
-                            <td className="flex items-center gap-2">
+                <button
+                    className={`px-3 py-1 rounded-full text-xs text-white ${
+                    parcel.payment_status === "paid" ? "bg-green-600" : "bg-yellow-400"
+                    }`}
+                >
+                    {parcel.payment_status}
+                </button>
+                </td>
+
+                            <td className="flex items-center gap-2 px-4 py-3">
                                 <button
                                     onClick={() => handleView(parcel._id)}
-                                    className="px-3 py-1 bg-green-600 rounded-xl text-white"
+                                    className="px-3 py-2 bg-green-600 rounded-sm text-xs text-white"
                                 >
                                     View
                                 </button>
                                 {parcel.payment_status === "unpaid" && (
                                     <button
                                         onClick={() => handlePay(parcel._id)}
-                                        className="text-xl text-blue-500"
+                                        className="text-2xl text-white px-3 py-1 rounded-sm bg-blue-700"
                                     >
                                        <FaAmazonPay/>
                                     </button>
                                 )}
                                 <button
                                     onClick={() => handleDelete(parcel._id)}
-                                    className="text-red-600 text-xl"
+                                    className="bg-red-600 text-sm text-white px-3 py-2 rounded-sm "
                                 >
                                     <RiDeleteBin6Line />
                                 </button>
                             </td>
                                 </tr>
                             ))}
+                            
+              {parcels.length === 0 && (
+                <tr>
+                  <td
+                    colSpan="6"
+                    className="text-center py-6 text-gray-500 italic"
+                  >
+                    No parcels found
+                  </td>
+                </tr>
+              )}
                         </tbody>
                     </table>
                 </div>
