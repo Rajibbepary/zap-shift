@@ -1,5 +1,6 @@
 
 import { TbTruckDelivery } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const UserSidebar = () => {
    
@@ -26,7 +27,7 @@ const UserSidebar = () => {
         <>
             <div className="md:w-64 w-16 dark:bg-gray-900/70 border-r h-[550px] text-base dark:border-gray-600 border-gray-300 pt-4 flex flex-col transition-all duration-300">
                  {sidebarLinks.map((item, index) => (
-                     <div to={item.path} key={index}
+                     <Link to={item.path} key={index}
                         className={`flex items-center py-3 px-4 gap-3 
                              ${index === 0 ? "border-r-4 md:border-r-[6px] border-[#CAEB66] text-[#b9f603]"
                                  : "hover:bg-gray-100/90 border-white text-gray-700 dark:text-white" }`
@@ -34,7 +35,7 @@ const UserSidebar = () => {
                                 >
                                 <span className="text-2xl">{item.icon}</span>
                                 <p className="md:block hidden text-center">{item.name}</p>
-                                </div>
+                                </Link>
             
                             ))}
                            
