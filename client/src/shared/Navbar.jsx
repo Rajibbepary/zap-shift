@@ -97,7 +97,7 @@ const Navbar = ({ theme, setTheme }) => {
 
         <NavLink
           onClick={() => setSidebarOpen(false)}
-          to="/about-us"
+          to="/about"
           className={({ isActive }) =>
             isActive
               ? "text-[#CAEB66] font-semibold"

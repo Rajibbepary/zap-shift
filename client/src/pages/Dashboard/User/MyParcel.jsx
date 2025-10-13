@@ -4,9 +4,11 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from 'sweetalert2';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaAmazonPay } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 const MyParcel = () => {
     const { user} = useAuth();
     const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate();
     const { data: parcels = [],refetch } = useQuery({
     queryKey: ['my-parcels', user?.email],
     queryFn: async () => {
@@ -21,8 +23,8 @@ const MyParcel = () => {
     };
 
     const handlePay = (id) => {
-        console.log("Proceed to payment for", id);
-        // Implement your payment logic
+        navigate(`/dashboard/payment/${id}`)
+       
     };
 
     const handleDelete = async (id) => {
