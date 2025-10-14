@@ -1,19 +1,18 @@
 
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
-import {  useState } from 'react';
 import useAuth from '../../../hooks/useAuth';
-
+import { useState } from 'react';
+import {useParams} from 'react-router-dom'
 
 const CheckoutForm = () => {
-
   const [error, setError] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const [success, setSuccess] = useState('');
   const stripe = useStripe();
   const elements = useElements();
- 
+ const {id} = useParams()
   const {user} = useAuth()
-
+console.log(id)
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -55,27 +54,23 @@ const CheckoutForm = () => {
     if(paymentIntent.status === 'succeeded')
       console.log('transaction id', paymentIntent.id)
     setTransactionId(paymentIntent.id)
-
-   
   }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen rounded-sm
-                    bg-gradient-to-br from-indigo-200 to-indigo-100 
+    <div className="flex items-center justify-center min-h-screen rounded-sm 
                     dark:from-gray-900 dark:to-gray-600 px-4 transition-colors">
       <div
-        className="w-full max-w-md bg-white dark:bg-gray-900 
+        className="w-full  bg-white dark:bg-gray-900 
                    shadow-lg rounded-xl p-8 border border-gray-200 dark:border-gray-700"
       >
         <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 text-center mb-6">
-          Secure Payment
+          Payment
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Card Input */}
           <div
-            whileFocus={{ scale: 1.02 }}
             className="p-3 border border-gray-300 dark:border-gray-600 
                        rounded-lg focus-within:ring-2 focus-within:ring-indigo-400"
           >
@@ -120,8 +115,7 @@ const CheckoutForm = () => {
             {success && (
               <p
                 key="success"
-                className="text-green-600 dark:text-green-400 text-sm text-center font-medium"
-              >
+                className="text-green-600 dark:text-green-400 text-sm text-center font-medium">
                 {success}
               </p>
             )}

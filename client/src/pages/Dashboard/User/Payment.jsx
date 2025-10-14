@@ -8,12 +8,11 @@ const stripePromise = loadStripe(import.meta.env.VITE_Payment_Getway_PK);
 
 const Payment = () => {
     return (
-          <div className="w-11/12 mx-auto">
-            {/* <SectionTitel subHeading={'Payment'} heading={'please pay first'}/> */}
-             <div className="w-9/12 mx-auto my-20">
+          <div className="w-full mx-auto">
+             <div className="lg:w-9/12 mx-auto my-10">
                 <Elements stripe={stripePromise} >
             <CheckoutForm/>
-        </Elements>
+          </Elements>
              </div>
         </div>
     );

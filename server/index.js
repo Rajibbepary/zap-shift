@@ -14,8 +14,6 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-
-
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.i8aog.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -54,6 +52,20 @@ app.get('/parcels', async(req, res) => {
   }catch (error){
     console.log('Error fetching parcels', error)
     res.status(500).send({message: 'Failed to get parcels'})
+  }
+})
+
+app.get('/parcels/:id', async(req, res)=>{
+  try{
+    const id = req.params.id;
+    const parcel = await parcelCollection.findOne({ _id: new ObjectId(id)})
+    if(!parcel){
+      return res.status(404).send({message:'parcel not found'})
+    }
+    res.send(parcel)
+  }catch(error){
+    console.error(error)
+    return res.status(500).send({message:"Failed to get parcel"})
   }
 })
 
