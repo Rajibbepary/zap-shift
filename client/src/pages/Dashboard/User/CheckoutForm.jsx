@@ -3,6 +3,9 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import useAuth from '../../../hooks/useAuth';
 import { useState } from 'react';
 import {useParams} from 'react-router-dom'
+import useAxiosSecure from './../../../hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import { Atom } from "react-loading-indicators";
 
 const CheckoutForm = () => {
   const [error, setError] = useState('');
@@ -10,9 +13,27 @@ const CheckoutForm = () => {
   const [success, setSuccess] = useState('');
   const stripe = useStripe();
   const elements = useElements();
- const {id} = useParams()
+ const {parcelId} = useParams()
   const {user} = useAuth()
-console.log(id)
+const axiosSecure = useAxiosSecure()
+console.log(parcelId)
+const { data: parcelInfo = {}, isPending } = useQuery({
+  queryKey: ['parcels', parcelId],
+  queryFn: async () => {
+    const res = await axiosSecure.get(`/parcels/${parcelId}`);
+    return res.data;
+  },
+});
+console.log(parcelInfo)
+
+if(isPending){
+   return (
+      <div className="flex justify-center items-center h-screen">
+        <Atom color="#32cd32" size="medium" text="" textColor="" />
+      </div>
+    );
+}
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
