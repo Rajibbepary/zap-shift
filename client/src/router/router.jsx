@@ -11,7 +11,8 @@ import PrivateRoute from "../routes/PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyParcel from "../pages/Dashboard/User/MyParcel";
 import About from "../pages/About/About";
-import Payment from "../pages/Dashboard/User/Payment";
+import Payment from "../pages/Dashboard/Payment/Payment";
+
 
 
 
