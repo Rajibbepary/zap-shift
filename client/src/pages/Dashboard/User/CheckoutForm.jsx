@@ -13,7 +13,7 @@ const CheckoutForm = () => {
   const [success, setSuccess] = useState('');
   const stripe = useStripe();
   const elements = useElements();
- const {parcelId} = useParams()
+  const {parcelId} = useParams()
   const {user} = useAuth()
 const axiosSecure = useAxiosSecure()
 console.log(parcelId)
