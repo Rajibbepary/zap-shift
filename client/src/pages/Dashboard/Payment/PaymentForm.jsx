@@ -111,7 +111,7 @@ const PaymentForm = () => {
                         });
 
                         // ✅ Redirect to /myParcels
-                        navigate('/dashboard/myParcels');
+                        navigate('/dashboard/myparcel');
 
                     }
                 }
@@ -168,7 +168,7 @@ const PaymentForm = () => {
             className="w-full py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 
                        transition text-white font-medium shadow-md"
           >
-            Pay Now
+            Pay Now ${amount}
           </button>
 
           {/* Animated Messages */}
