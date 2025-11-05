@@ -47,7 +47,6 @@ app.get('/parcels', async(req, res) => {
     const query = userEmail ? { created_by: userEmail} : {};
     const options = {
       sort: { createdAt: -1},
-  
     }
     const parcels = await parcelCollection.find(query, options).toArray();
     res.send(parcels);
@@ -94,8 +93,6 @@ app.get('/parcels/:id', async(req, res)=>{
         res.status(500).send({ message: 'Failed to delete parcel' });
      }
  });
-
-
 
  app.get('/payments', async (req, res) => {
             try {
