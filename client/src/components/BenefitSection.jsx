@@ -12,7 +12,7 @@ const BenefitSection = () => {
                     <h2 className='ml-4 dark:text-white/75 text-gray-800 font-semibold text-xl'>Live Parcel Tracking</h2>
                     <p  className='ml-4 dark:text-white/75 mt-2 text-gray-800 text-sm'>Stay updated in real-time with our live parcel tracking feature. From pick-up to delivery, monitor your shipment's journey and get instant status updates for complete peace of mind.</p>
                 </div>
-            </div>
+            </div> 
 
               <div className='flex max-sm:flex-col justify-center items-center gap-9 bg-[#FFFFFF] dark:bg-gray-800 shadow-xl p-6 rounded-xl hover:scale-105 transition-all duration-300'>
                 <div>

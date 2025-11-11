@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import useAxios from "../../hooks/useAxios";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -11,10 +12,21 @@ const Login = () => {
     const { register, handleSubmit } = useForm()
     const {createUser,signInWithGoogle,signIn,} = useAuth()
     const [showPassword, setShowPassword] = useState(false)
+    const axiosInstance = useAxios();
   const onSubmit = (data) => {
     console.log(data)
     createUser(data.email, data.password)
-    .then( result =>{
+    .then( async(result) =>{
+
+      const userInfo = {
+          email:data.email,
+          role:'user', //default role
+          created_at: new Date().toISOString(),
+          last_log_in: new Date().toISOString()
+      }
+
+      const userRes = await axiosInstance.post('/users',userInfo)
+      console.log(userRes.data);
         console.log(result.user)
          toast.success('Signin Successful')
         navigate('/')
